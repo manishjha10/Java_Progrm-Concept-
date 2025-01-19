@@ -1,0 +1,36 @@
+
+class Solution { 
+    public ListNode rotateRight(ListNode head, int k) { 
+ 
+        ListNode temp  = head ;
+        ListNode tail = head ; 
+        if(head ==  null  ||  head.next == null ||  k== 0) return head;
+        int n =  0 , d = 0 ;
+
+        // Tail find .     
+        while(tail.next != null){
+            tail = tail.next ; 
+            n++; 
+        } 
+        n++;
+        // circular list
+        tail.next = head;
+
+        if(k % n == 0) 
+        {  
+           tail.next = null ;
+           return head;
+        } 
+        
+        d = k % n ; 
+
+       // Break the tail node. 
+       for(int i = 0 ;i < n - d-1 ;i++){
+        temp = temp.next  ;
+       } 
+      head = temp.next ;
+      temp.next  = null ;
+      
+      return head  ;
+    }
+}
